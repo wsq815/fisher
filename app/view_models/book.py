@@ -4,8 +4,8 @@
 # @File : book.py
 
 class BookViewModel:
-    @classmethod
-    def package_single(cls, data, keyword):
+
+    def package_single(self, data, keyword):
         returned = {
             'books': [],
             'total': 0,
@@ -13,11 +13,10 @@ class BookViewModel:
         }
         if data:
             returned['total'] = 1
-            returned['books'] = [cls.__cut_book_data(data)]
+            returned['books'] = [self.__cut_book_data(data)]
         return returned
 
-    @classmethod
-    def package_collection(cls, data, keyword):
+    def package_collection(self, data, keyword):
         returned = {
             'books': [],
             'total': 0,
@@ -25,10 +24,10 @@ class BookViewModel:
         }
         if data:
             returned['total'] = data['total']
-            returned['books'] = [cls.__cut_book_data(book) for book in data['books']]
+            returned['books'] = [self.__cut_book_data(book) for book in data['books']]
         return returned
-    @classmethod
-    def __cut_book_data(cls, data):
+
+    def __cut_book_data(self, data):
         book = {
             'title': data['title'],
             'publisher': data['publisher'],
