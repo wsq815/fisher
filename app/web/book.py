@@ -14,7 +14,7 @@ from app.libs.helper import is_isbn_or_key
 from app.spider.yushu_book import YuShuBook
 from app.forms.book import SearchForm
 from app.view_models.book import BookCollection
-
+import json
 @web.route('/test')
 def test1():
     from flask import request
@@ -35,6 +35,7 @@ def search():
     """
     form = SearchForm(request.args)
     books = BookCollection()
+
     if form.validate():
          # a = request.args.to_dict() #转为可变字典
          # 验证层
@@ -42,12 +43,15 @@ def search():
         page = form.page.data
         isbn_or_key = is_isbn_or_key(q)
         yushu_book = YuShuBook()
+
         if isbn_or_key == 'isbn':
             yushu_book.search_by_isbn(q)
         else:
             yushu_book.search_by_keyword(q, page)
+
         books.fill(yushu_book, q)
-        return jsonify(books)
+        return json.dumps(books, default=lambda o: o.__dict__, ensure_ascii=False)
+        # return jsonify(books.__dict__)
     else:
         return jsonify(form.errors)
     # return json.dumps(result), 200 , {'content-type':'application/json'}
