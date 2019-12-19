@@ -6,7 +6,7 @@
 # 蓝图 blueprint 蓝本
 
 # http://t.yushu.im/v2/book/isbn/9787501524044
-from flask import jsonify, request
+from flask import jsonify, request, render_template
 
 from app.spider import yushu_book
 from . import web
@@ -15,17 +15,6 @@ from app.spider.yushu_book import YuShuBook
 from app.forms.book import SearchForm
 from app.view_models.book import BookCollection
 import json
-@web.route('/test')
-def test1():
-    from flask import request
-    from app.libs.node_local import n
-    print(n.v)
-    n.v = 2
-    print('-------')
-    print(getattr(request, 'v', None))
-    setattr(request, 'v', 2)
-    print('-------')
-    return ''
 
 @web.route('/book/search')
 def search():
@@ -54,4 +43,14 @@ def search():
         # return jsonify(books.__dict__)
     else:
         return jsonify(form.errors)
-    # return json.dumps(result), 200 , {'content-type':'application/json'}
+
+
+
+@web.route('/test')
+def test():
+    r = {
+        'name': 'wuson',
+        'age': 18
+    }
+    # 模板 html
+    return render_template('test.html', data=r)
