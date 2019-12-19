@@ -2,7 +2,7 @@
 {% extends 'layout.html' %}
 {%  block content %}
     {{ super() }}
-    <h2>{{data.age}}</h2>
+{#    <h2>{{data.age}}</h2>#}
     {# {% for in %} #}
     {# {% if %} #}
     {% if data.age < 18 %}
@@ -10,8 +10,10 @@
             {{ data.name }}
         </h2>
     {% elif data.age == 18 %}
-        do something 1
+        {{ data | length() }}
+        {{ data.school | default('未名') }}
+
     {% else %}
-        {{ data.age }}
+{#        {{ data.age }}#}
     {% endif %}
 {% endblock %}

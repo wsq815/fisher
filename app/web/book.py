@@ -49,7 +49,7 @@ def search():
 @web.route('/test')
 def test():
     r = {
-        'name': 'wuson',
+        'name': '',
         'age': 18
     }
     # 模板 html
