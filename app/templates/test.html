@@ -10,9 +10,13 @@
             {{ data.name }}
         </h2>
     {% elif data.age == 18 %}
-        {{ data | length() }}
-        {{ data.school | default('未名') }}
 
+{# set: 作用域在block里面; with: 作用域在with闭合语句里面#}
+{#        {% set messages = get_flashed_messages() %}#}
+{#        {{ messages }}#}
+        {% with messages = get_flashed_messages() %}
+            {{ messages }}
+        {% endwith %}
     {% else %}
 {#        {{ data.age }}#}
     {% endif %}

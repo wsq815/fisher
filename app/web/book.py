@@ -6,7 +6,7 @@
 # 蓝图 blueprint 蓝本
 
 # http://t.yushu.im/v2/book/isbn/9787501524044
-from flask import jsonify, request, render_template
+from flask import jsonify, request, render_template, flash
 
 from app.spider import yushu_book
 from . import web
@@ -52,5 +52,7 @@ def test():
         'name': '',
         'age': 18
     }
+    flash('hello, wuson')
+    flash('hello, qiyue')
     # 模板 html
     return render_template('test.html', data=r)
