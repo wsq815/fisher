@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>{{data.age}}</h1>
+
+{% extends 'layout.html' %}
+{%  block content %}
+    {{ super() }}
+    <h2>{{data.age}}</h2>
     {# {% for in %} #}
     {# {% if %} #}
     {% if data.age < 18 %}
@@ -17,5 +14,4 @@
     {% else %}
         {{ data.age }}
     {% endif %}
-</body>
-</html>
+{% endblock %}
