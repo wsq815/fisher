@@ -53,4 +53,4 @@ def test():
         'age': 18
     }
     # 模板 html
-    return render_template('test.html', data=r)
+    return render_template('test2.html', data=r)
