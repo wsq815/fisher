@@ -5,7 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-    {#Jinja2#} {# 模板语言 #}
     <h1>{{data.age}}</h1>
+    {# {% for in %} #}
+    {# {% if %} #}
+    {% if data.age < 18 %}
+        <h2>
+            {{ data.name }}
+        </h2>
+    {% elif data.age == 18 %}
+        do something
+    {% else %}
+        {{ data.age }}
+    {% endif %}
 </body>
 </html>
