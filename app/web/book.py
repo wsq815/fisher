@@ -24,7 +24,6 @@ def search():
     """
     form = SearchForm(request.args)
     books = BookCollection()
-
     if form.validate():
          # a = request.args.to_dict() #转为可变字典
          # 验证层
@@ -39,11 +38,17 @@ def search():
             yushu_book.search_by_keyword(q, page)
 
         books.fill(yushu_book, q)
-        return json.dumps(books, default=lambda o: o.__dict__, ensure_ascii=False)
+        # return json.dumps(books, default=lambda o: o.__dict__, ensure_ascii=False)
         # return jsonify(books.__dict__)
     else:
-        return jsonify(form.errors)
 
+        flash('搜索的关键字不符合要求，请重新输入关键字')
+        # return jsonify(form.errors)
+    return render_template('search_result.html', books=books)
+
+@web.route('/book/<isbn>/detail')
+def book_detail(isbn):
+    pass
 
 
 @web.route('/test')

@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-    {% for foo in [1,2,3] %}
-        <div>{{ foo }}</div>
+    {% for key, value in data.items() %}
+        {{ key }}
+        {{ value }}
+{#        <div>111</div>#}
     {% endfor %}
-     {% for key, value in data.items() %}
-        <div>{{ key }}: {{ value }}</div>
-    {% endfor %}
+    
 </body>
 </html>

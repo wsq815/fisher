@@ -1,23 +1,16 @@
-
 {% extends 'layout.html' %}
-{%  block content %}
+{% block content %}
     {{ super() }}
-{#    <h2>{{data.age}}</h2>#}
-    {# {% for in %} #}
-    {# {% if %} #}
     {% if data.age < 18 %}
-        <h2>
-            {{ data.name }}
-        </h2>
+        {{ data.name }}
     {% elif data.age == 18 %}
-
-{# set: 作用域在block里面; with: 作用域在with闭合语句里面#}
-{#        {% set messages = get_flashed_messages() %}#}
-{#        {{ messages }}#}
+        {{ data.school | default(data.school) | default('未名')}}
         {% with messages = get_flashed_messages() %}
-            {{ messages }}
+        {{ messages }}
         {% endwith %}
     {% else %}
-{#        {{ data.age }}#}
+        {{ data.age }}
     {% endif %}
+     {{ messages }}
 {% endblock %}
+
